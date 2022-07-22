@@ -70,6 +70,11 @@ public class Principal extends javax.swing.JFrame {
         jMenuProductos.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
 
         jMenuItemCrearProd.setText("Crear");
+        jMenuItemCrearProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCrearProdActionPerformed(evt);
+            }
+        });
         jMenuProductos.add(jMenuItemCrearProd);
 
         jMenuItemListarProd.setText("Listar");
@@ -81,6 +86,11 @@ public class Principal extends javax.swing.JFrame {
         jMenuProductos.add(jMenuItemListarProd);
 
         jMenuItemAdministraProd.setText("Administrar");
+        jMenuItemAdministraProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAdministraProdActionPerformed(evt);
+            }
+        });
         jMenuProductos.add(jMenuItemAdministraProd);
 
         jMenuBar1.add(jMenuProductos);
@@ -125,7 +135,33 @@ public class Principal extends javax.swing.JFrame {
 
     private void jMenuItemListarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemListarProdActionPerformed
         // TODO add your handling code here:
+        ListarProductos ventanaListarProductos;
+        
+        ventanaListarProductos = new ListarProductos();
+        
+        agregarVentanaPanel(ventanaListarProductos);
+        ventanaListarProductos.show();
     }//GEN-LAST:event_jMenuItemListarProdActionPerformed
+
+    private void jMenuItemCrearProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCrearProdActionPerformed
+        // TODO add your handling code here:
+        CrearProductos ventanaCrearProductos;
+        
+        ventanaCrearProductos = new CrearProductos();
+        
+        agregarVentanaPanel(ventanaCrearProductos);
+        ventanaCrearProductos.show();
+    }//GEN-LAST:event_jMenuItemCrearProdActionPerformed
+
+    private void jMenuItemAdministraProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAdministraProdActionPerformed
+        // TODO add your handling code here:
+        AdministrarProductos ventanaAdministrarProductos;
+        
+        ventanaAdministrarProductos = new AdministrarProductos();
+        
+        agregarVentanaPanel(ventanaAdministrarProductos);
+        ventanaAdministrarProductos.show();
+    }//GEN-LAST:event_jMenuItemAdministraProdActionPerformed
 
     /**
      * @param args the command line arguments

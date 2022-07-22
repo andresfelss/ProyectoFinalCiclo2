@@ -51,6 +51,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Crear"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemCrearProdActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemListarProd">
               <Properties>
@@ -64,6 +67,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Administrar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemAdministraProdActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
