@@ -111,6 +111,11 @@ public class Principal extends javax.swing.JFrame {
     private void jMenuItemAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAcercaDeActionPerformed
         // TODO add your handling code here:
         AcercaDe ventanaAcercaDe;
+        
+        ventanaAcercaDe = new AcercaDe();
+        
+        agregarVentanaPanel(ventanaAcercaDe);
+        ventanaAcercaDe.show();
     }//GEN-LAST:event_jMenuItemAcercaDeActionPerformed
 
     private void jMenuItemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalirActionPerformed
