@@ -9,10 +9,13 @@ public class Producto {
     private String id;
     private double temperatura;
     private double valorBase;
-
+    
+    // =========================== Constructores ===============================
+    
     public Producto() {
     }
 
+    // =========================== Getters y Setters ===========================
     public long getCodProducto() {
         return codProducto;
     }
