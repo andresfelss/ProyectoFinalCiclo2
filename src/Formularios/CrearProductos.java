@@ -154,7 +154,7 @@ public class CrearProductos extends javax.swing.JInternalFrame {
                         .addGroup(panelBodyProductoCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombreProducto2)
                             .addComponent(lblNombreProducto1))
-                        .addGap(41, 41, 41)
+                        .addGap(39, 39, 39)
                         .addGroup(panelBodyProductoCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(TextCodigoProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TextNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
