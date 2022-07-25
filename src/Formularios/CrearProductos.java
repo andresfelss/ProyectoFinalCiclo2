@@ -35,8 +35,14 @@ public class CrearProductos extends javax.swing.JInternalFrame {
         lblNombreProducto = new javax.swing.JLabel();
         lblNombreProducto1 = new javax.swing.JLabel();
         TextNombreProducto = new javax.swing.JTextField();
-        TextCodigoProducto = new javax.swing.JTextField();
+        TextTempProducto = new javax.swing.JTextField();
+        lblNombreProducto2 = new javax.swing.JLabel();
+        lblNombreProducto3 = new javax.swing.JLabel();
+        TextCodigoProducto1 = new javax.swing.JTextField();
+        TextValorBaseProducto = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
+        btnCrearProducto = new javax.swing.JButton();
+        btnCancelarCrear = new javax.swing.JButton();
 
         panelCabProducto1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -87,7 +93,7 @@ public class CrearProductos extends javax.swing.JInternalFrame {
         panelCabProductoCrearLayout.setHorizontalGroup(
             panelCabProductoCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCabProductoCrearLayout.createSequentialGroup()
-                .addContainerGap(190, Short.MAX_VALUE)
+                .addContainerGap(196, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(176, 176, 176))
         );
@@ -102,7 +108,7 @@ public class CrearProductos extends javax.swing.JInternalFrame {
         panelBodyProductoCrear.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         lblNombreProducto.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        lblNombreProducto.setText("REFERNCIA:");
+        lblNombreProducto.setText("TEMPERATURA:");
 
         lblNombreProducto1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         lblNombreProducto1.setText("NOMBRE: ");
@@ -113,9 +119,27 @@ public class CrearProductos extends javax.swing.JInternalFrame {
             }
         });
 
-        TextCodigoProducto.addActionListener(new java.awt.event.ActionListener() {
+        TextTempProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextCodigoProductoActionPerformed(evt);
+                TextTempProductoActionPerformed(evt);
+            }
+        });
+
+        lblNombreProducto2.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        lblNombreProducto2.setText("REFERNCIA:");
+
+        lblNombreProducto3.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        lblNombreProducto3.setText("VALOR BASE:");
+
+        TextCodigoProducto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextCodigoProducto1ActionPerformed(evt);
+            }
+        });
+
+        TextValorBaseProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextValorBaseProductoActionPerformed(evt);
             }
         });
 
@@ -124,50 +148,73 @@ public class CrearProductos extends javax.swing.JInternalFrame {
         panelBodyProductoCrearLayout.setHorizontalGroup(
             panelBodyProductoCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBodyProductoCrearLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
                 .addGroup(panelBodyProductoCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBodyProductoCrearLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(lblNombreProducto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TextCodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelBodyProductoCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNombreProducto2)
+                            .addComponent(lblNombreProducto1))
+                        .addGap(39, 39, 39)
+                        .addGroup(panelBodyProductoCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(TextCodigoProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelBodyProductoCrearLayout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(TextNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(panelBodyProductoCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNombreProducto)
+                            .addComponent(lblNombreProducto3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelBodyProductoCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextTempProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextValorBaseProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panelBodyProductoCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelBodyProductoCrearLayout.createSequentialGroup()
-                    .addGap(36, 36, 36)
-                    .addComponent(lblNombreProducto1)
-                    .addContainerGap(590, Short.MAX_VALUE)))
         );
         panelBodyProductoCrearLayout.setVerticalGroup(
             panelBodyProductoCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBodyProductoCrearLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(TextNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(panelBodyProductoCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(49, 49, 49)
+                .addGroup(panelBodyProductoCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombreProducto1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelBodyProductoCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNombreProducto2)
+                    .addComponent(TextCodigoProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelBodyProductoCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombreProducto)
-                    .addComponent(TextCodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(158, Short.MAX_VALUE))
-            .addGroup(panelBodyProductoCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelBodyProductoCrearLayout.createSequentialGroup()
-                    .addGap(40, 40, 40)
-                    .addComponent(lblNombreProducto1)
-                    .addContainerGap(221, Short.MAX_VALUE)))
+                    .addComponent(TextTempProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelBodyProductoCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNombreProducto3)
+                    .addComponent(TextValorBaseProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        btnCrearProducto.setText("CREAR");
+
+        btnCancelarCrear.setText("CANCELAR");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnCrearProducto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancelarCrear)
+                .addGap(239, 239, 239))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCrearProducto)
+                    .addComponent(btnCancelarCrear))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -176,7 +223,10 @@ public class CrearProductos extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelCabProductoCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panelBodyProductoCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,9 +234,9 @@ public class CrearProductos extends javax.swing.JInternalFrame {
                 .addComponent(panelCabProductoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelBodyProductoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(13, 13, 13))
         );
 
         pack();
@@ -196,20 +246,34 @@ public class CrearProductos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextNombreProductoActionPerformed
 
-    private void TextCodigoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextCodigoProductoActionPerformed
+    private void TextTempProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextTempProductoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextCodigoProductoActionPerformed
+    }//GEN-LAST:event_TextTempProductoActionPerformed
+
+    private void TextCodigoProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextCodigoProducto1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextCodigoProducto1ActionPerformed
+
+    private void TextValorBaseProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextValorBaseProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextValorBaseProductoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TextCodigoProducto;
+    private javax.swing.JTextField TextCodigoProducto1;
     private javax.swing.JTextField TextNombreProducto;
+    private javax.swing.JTextField TextTempProducto;
+    private javax.swing.JTextField TextValorBaseProducto;
+    private javax.swing.JButton btnCancelarCrear;
+    private javax.swing.JButton btnCrearProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblNombreProducto;
     private javax.swing.JLabel lblNombreProducto1;
+    private javax.swing.JLabel lblNombreProducto2;
+    private javax.swing.JLabel lblNombreProducto3;
     private javax.swing.JPanel panelBodyProductoCrear;
     private javax.swing.JPanel panelCabProducto1;
     private javax.swing.JPanel panelCabProductoCrear;
