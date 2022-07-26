@@ -251,6 +251,17 @@ public class CrearProductos extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void limpiarCajas(){
+        TextCodigoProducto1.setText("");
+        TextNombreProducto.setText("");
+        TextTempProducto.setText("");
+        TextValorBaseProducto.setText("");
+        
+        TextNombreProducto.requestFocus();
+        
+    }
+    
+    
     private void TextNombreProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNombreProductoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextNombreProductoActionPerformed
@@ -298,8 +309,10 @@ public class CrearProductos extends javax.swing.JInternalFrame {
             
             if (objDaoProducto.agregar(objProducto)) { // Recordemos que agregar retorna un booleano si es TRUE se agrego correctamente
                 JOptionPane.showMessageDialog(panelBodyProductoCrear, "Registro Agregado Correctamente");
+                limpiarCajas();
             } else {
                 JOptionPane.showMessageDialog(panelBodyProductoCrear, "Error: El registro no pudo ser Agregado");
+                limpiarCajas();
             }
                    
         }

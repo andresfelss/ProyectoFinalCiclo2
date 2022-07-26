@@ -46,7 +46,7 @@ public class DaoProducto extends Conexion implements Operaciones<Producto> {
             ResultSet rs;
             List <Producto> arregloProductos = new ArrayList<>();
             
-            sql = "SELECT codproducto nombre,id,temperatura,valorbase FROM productos ORDER BY codproducto ASC";
+            sql = "SELECT codproducto,nombre,id,temperatura,valorbase FROM productos ORDER BY codproducto ASC";
             consulta = objConexion.prepareStatement(sql);
             rs = consulta.executeQuery(); // Ejecutamos la consulta
             
