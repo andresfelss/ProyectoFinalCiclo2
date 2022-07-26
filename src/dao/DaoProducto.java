@@ -51,16 +51,25 @@ public class DaoProducto extends Conexion implements Operaciones<Producto> {
             rs = consulta.executeQuery(); // Ejecutamos la consulta
             
             while(rs.next()){
+                
                 Producto objProducto = new Producto();
+                
+                // Transformo esos valores de Result Set que  vienen de la base de datos
                 objProducto.setCodProducto(Long.parseLong(rs.getObject(1).toString()));
                 objProducto.setNombre(rs.getObject(2).toString());
                 objProducto.setId(rs.getObject(3).toString());
                 objProducto.setTemperatura(Double.parseDouble(rs.getObject(4).toString()));
                 objProducto.setValorBase(Double.parseDouble(rs.getObject(5).toString()));
+                
+                arregloProductos.add(objProducto);
             }
+                objConexion.close();
+                return arregloProductos;
             
             
-        } catch (Exception e) {
+        } catch (NumberFormatException | SQLException e) {
+            Logger.getLogger(DaoProducto.class.getName()).log(Level.SEVERE, null, e);
+            return null;
         }
     }
 

@@ -19,9 +19,9 @@ public abstract class Conexion {
     
     public Conexion(){
         String nombreArchivo = "variablesBD";
-        this.usuario = Propiedades.leer(nombreArchivo, "nombre_usuario").replaceAll("\"", " ");
-        this.clave = Propiedades.leer(nombreArchivo, "clave_usuario").replaceAll("\"", " ");
-        this.url = Propiedades.leer(nombreArchivo, "url_conexion").replaceAll("\"", " ");
+        this.usuario = Propiedades.leer(nombreArchivo, "nombre_usuario").replaceAll("\"", "");
+        this.clave = Propiedades.leer(nombreArchivo, "clave_usuario").replaceAll("\"", "");
+        this.url = Propiedades.leer(nombreArchivo, "url_conexion").replaceAll("\"", "");
         this.driver = Propiedades.leer(nombreArchivo, "driver").replaceAll("\"", "");
         
         // LLamamos al metodo activar para activar la conexion
