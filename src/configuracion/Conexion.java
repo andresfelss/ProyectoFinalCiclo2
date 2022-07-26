@@ -22,7 +22,7 @@ public abstract class Conexion {
         this.usuario = Propiedades.leer(nombreArchivo, "nombre_usuario").replaceAll("\"", " ");
         this.clave = Propiedades.leer(nombreArchivo, "clave_usuario").replaceAll("\"", " ");
         this.url = Propiedades.leer(nombreArchivo, "url_conexion").replaceAll("\"", " ");
-        this.driver = Propiedades.leer(nombreArchivo, "driver").replaceAll("\"", " ");
+        this.driver = Propiedades.leer(nombreArchivo, "driver").replaceAll("\"", "");
         
         // LLamamos al metodo activar para activar la conexion
         activar();
@@ -30,6 +30,7 @@ public abstract class Conexion {
     
     private void activar(){
         try {
+            System.out.println(driver);
             Class.forName(driver);
             objConexion = DriverManager.getConnection(url,usuario,clave);
         } catch (ClassNotFoundException | SQLException ex) {

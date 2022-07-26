@@ -4,6 +4,10 @@
  */
 package Formularios;
 
+import dao.DaoProducto;
+import javax.swing.JOptionPane;
+import modelos.Producto;
+
 /**
  *
  * @author andre
@@ -193,6 +197,11 @@ public class CrearProductos extends javax.swing.JInternalFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnCrearProducto.setText("CREAR");
+        btnCrearProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearProductoActionPerformed(evt);
+            }
+        });
 
         btnCancelarCrear.setText("CANCELAR");
 
@@ -257,6 +266,46 @@ public class CrearProductos extends javax.swing.JInternalFrame {
     private void TextValorBaseProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextValorBaseProductoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextValorBaseProductoActionPerformed
+
+    private void btnCrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearProductoActionPerformed
+        // TODO add your handling code here:
+        // Necesitamos recoger los datos - DEfinicion de variables
+        String cajaNombre,cajaReferencia;
+        Double cajaTemperatura, cajaValorBase;
+        
+        // Instanciamos los clases DAO y nuestro modelo Producto
+        DaoProducto objDaoProducto;
+        Producto objProducto;
+        
+        // Capturamos la informacion de las cajas
+        cajaNombre = TextNombreProducto.getText();
+        cajaReferencia = TextCodigoProducto1.getText();
+        cajaTemperatura = Double.parseDouble(TextTempProducto.getText());
+        cajaValorBase = Double.parseDouble(TextValorBaseProducto.getText());
+        
+        if (cajaNombre.isEmpty() || cajaReferencia.isEmpty() || cajaTemperatura == null || cajaValorBase == null) {
+            JOptionPane.showMessageDialog(panelBodyProductoCrear, "Todos los valores son obligatorios");
+        }else{
+            // Creacion de objetos
+            objDaoProducto = new DaoProducto();
+            objProducto = new Producto();
+            
+            // Pasamos los atributos a Producto
+            objProducto.setNombre(cajaNombre);
+            objProducto.setId(cajaReferencia);
+            objProducto.setTemperatura(cajaTemperatura);
+            objProducto.setValorBase(cajaValorBase);
+            
+            if (objDaoProducto.agregar(objProducto)) { // Recordemos que agregar retorna un booleano si es TRUE se agrego correctamente
+                JOptionPane.showMessageDialog(panelBodyProductoCrear, "Registro Agregado Correctamente");
+            } else {
+                JOptionPane.showMessageDialog(panelBodyProductoCrear, "Error: El registro no pudo ser Agregado");
+            }
+                   
+        }
+        
+        
+    }//GEN-LAST:event_btnCrearProductoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
