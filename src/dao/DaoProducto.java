@@ -31,11 +31,11 @@ public class DaoProducto extends Conexion implements Operaciones<Producto> {
             consulta.setDouble(4,objeto.getValorBase());
             int filas = consulta.executeUpdate(); // ejecutamos la sentencia
             objConexion.close(); // Cerramos la conexion
-            return filas > 0;
+            return filas > 0; // Retorna True si se realizo alguna modificacion
             
         } catch (SQLException e) {
            Logger.getLogger(DaoProducto.class.getName()).log(Level.SEVERE, null, e);
-           return false;
+           return false; // Retorna False si Se ejecuto alguan excepcion
             
         }
     }
@@ -43,15 +43,22 @@ public class DaoProducto extends Conexion implements Operaciones<Producto> {
     @Override
     public List<Producto> consultar() {
         try {
-            ResultSet rs;
+            // Lo que me arrojara la Base de datos es un objeto tipo Result Set 
+            ResultSet rs; // L instancio
+            // Pasare los registros de dicho Rs a un Array que si puedo manipular con Java
             List <Producto> arregloProductos = new ArrayList<>();
             
+            // Escribo el Query para seleccionar y digo que lo quiero en Orden ASCENDENTE
             sql = "SELECT codproducto,nombre,id,temperatura,valorbase FROM productos ORDER BY codproducto ASC";
+            // Preparo el QUERY
             consulta = objConexion.prepareStatement(sql);
-            rs = consulta.executeQuery(); // Ejecutamos la consulta
+            // Ejecutamos la consulta
+            rs = consulta.executeQuery();
             
+            // ======== Itero con el Result Set Que me devolvio la BD ==========
             while(rs.next()){
                 
+                // Creo un objeto Producto
                 Producto objProducto = new Producto();
                 
                 // Transformo esos valores de Result Set que  vienen de la base de datos
@@ -61,9 +68,12 @@ public class DaoProducto extends Conexion implements Operaciones<Producto> {
                 objProducto.setTemperatura(Double.parseDouble(rs.getObject(4).toString()));
                 objProducto.setValorBase(Double.parseDouble(rs.getObject(5).toString()));
                 
-                arregloProductos.add(objProducto);
+                // Agrego cada Producto ya creado a mi Array List 
+                arregloProductos.add(objProducto); 
             }
+                // Una vez todos los Objetos agregados se cierra la conexion
                 objConexion.close();
+                // Retorno el arreglo
                 return arregloProductos;
             
             
