@@ -37,7 +37,7 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
         objDaoProductos = new DaoProducto();
         // llamamos al metodo consultar
         arregloProductos = objDaoProductos.consultar();
-        
+        // Para cada objeto de tipo producto asgino el atributo a la columna correspondiente.
         arregloProductos.forEach(producto -> {
            Object[] fila = new Object[5];
            fila[0] = producto.getCodProducto();
@@ -45,8 +45,10 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
            fila[2] = producto.getId();
            fila[3] = producto.getTemperatura();
            fila[4] = producto.getValorBase();
+           // Añado la fola
            miTablita.addRow(fila);        
         });
+        // Aplico la tabla
         tablaProductosAdmin.setModel(miTablita);
     }
 
@@ -329,9 +331,9 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
             
             if (objDaoProducto.actualizar(objProducto)) { // Recordemos que agregar retorna un booleano si es TRUE se agrego correctamente
                 JOptionPane.showMessageDialog(PanelAdministrar, "Registro Actualizado Correctamente");
-                limpiarCajas();
-                limpiarTabla();
-                cargarDatosTabla();
+                limpiarCajas(); // Limpio los text fields
+                limpiarTabla(); // Limpio la tabla
+                cargarDatosTabla(); // Vuelvo a cargar los datos de la tabla actualizados
             } else {
                 JOptionPane.showMessageDialog(PanelAdministrar, "Error: El registro no pudo ser Actualizado");
                 limpiarCajas();

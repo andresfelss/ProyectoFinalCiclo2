@@ -2,7 +2,6 @@
 package interfaces;
 import java.util.List;
 
-
 // <T> Genericos Puede llegar cualquier tipo de objeto como producto categoria etc
 
 public interface Operaciones<T> {

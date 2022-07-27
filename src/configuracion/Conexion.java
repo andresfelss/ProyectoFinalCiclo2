@@ -1,12 +1,14 @@
 
 package configuracion;
 
+// Imports para la conexion
 import java.sql.Connection;
 import java.sql.DriverManager;
+import utilidades.Propiedades;
+//Imports para Exepciones
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import utilidades.Propiedades;
 
 
 public abstract class Conexion {
@@ -18,7 +20,9 @@ public abstract class Conexion {
     protected Connection objConexion;
     
     public Conexion(){
+        // Nombre del Archivo .properties
         String nombreArchivo = "variablesBD";
+        // Definimos las variables que necesitamos
         this.usuario = Propiedades.leer(nombreArchivo, "nombre_usuario").replaceAll("\"", "");
         this.clave = Propiedades.leer(nombreArchivo, "clave_usuario").replaceAll("\"", "");
         this.url = Propiedades.leer(nombreArchivo, "url_conexion").replaceAll("\"", "");
@@ -30,9 +34,8 @@ public abstract class Conexion {
     
     private void activar(){
         try {
-            System.out.println(driver);
-            Class.forName(driver);
-            objConexion = DriverManager.getConnection(url,usuario,clave);
+            Class.forName(driver); // Linea necesaria para saber que driver de un motor de BD estamos usando
+            objConexion = DriverManager.getConnection(url,usuario,clave); // De esta forma obtenemos la conexion
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Propiedades.class.getName()).log(Level.SEVERE, null, ex);
         }
