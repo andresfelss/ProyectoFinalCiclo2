@@ -102,5 +102,29 @@ public class DaoProducto extends Conexion implements Operaciones<Producto> {
     public Producto buscar(long llavePK) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
+
+    @Override
+    public boolean actualizar(Producto objeto) {
+        try {
+            
+            sql = "UPDATE productos SET nombre=?,id=?,temperatura=?,valorbase=? WHERE codproducto=?";
+            consulta = objConexion.prepareStatement(sql); //Preparamos la sentencia SQL para pasar los parametros
+            // consulta.SetTipoVariable(ordenParametro,valor)
+            consulta.setString(1, objeto.getNombre()); 
+            consulta.setString(2, objeto.getId());
+            consulta.setDouble(3,objeto.getTemperatura());
+            consulta.setDouble(4,objeto.getValorBase());
+            consulta.setLong(5,objeto.getCodProducto());
+            
+            int filas = consulta.executeUpdate(); // ejecutamos la sentencia
+            objConexion.close(); // Cerramos la conexion
+            return filas > 0; // Retorna True si se realizo alguna modificacion
+            
+        } catch (SQLException e) {
+           Logger.getLogger(DaoProducto.class.getName()).log(Level.SEVERE, null, e);
+           return false; // Retorna False si Se ejecuto alguan excepcion
+            
+        }
+    }
     
 }

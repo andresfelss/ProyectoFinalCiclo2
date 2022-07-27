@@ -50,6 +50,13 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
         tablaProductosAdmin.setModel(miTablita);
     }
 
+    // ============== Metodo para Limpar todos los registros de la tabla =======
+    private void limpiarTabla(){
+        for (int i = 0; i < tablaProductosAdmin.getRowCount(); i++) {
+            miTablita.removeRow(i);
+            i-=1;
+        }
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -103,6 +110,8 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         jLabel1.setText("CODIGO:");
 
+        TextCodigoAdmin.setEnabled(false);
+
         jLabel3.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         jLabel3.setText("REFERENCIA:");
 
@@ -116,6 +125,11 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
         jLabel7.setText("NOMBRE:");
 
         BtnActualizar.setText("ACTUALIZAR");
+        BtnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnActualizarActionPerformed(evt);
+            }
+        });
 
         tablaProductosAdmin.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -220,8 +234,7 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
    
-    // ============= Evento Click en una fila de la tabla  =====================
-    
+    // ============= Evento Click en una fila de la tabla  =====================    
     private void tablaProductosAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosAdminMouseClicked
         
         // Obtengo el indice de la fila seleccionada por el Mouse
@@ -249,14 +262,8 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_tablaProductosAdminMouseClicked
     
-    private void limpiarTabla(){
-        for (int i = 0; i < tablaProductosAdmin.getRowCount(); i++) {
-            miTablita.removeRow(i);
-            i-=1;
-        }
-    }
     
-    // ======================== EVvento Eliminar ===============================
+    // ======================== Evento Eliminar ================================
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
         // Definimos las variables
         Long codProducto;
@@ -287,6 +294,52 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
         
         
     }//GEN-LAST:event_BtnEliminarActionPerformed
+
+    // ======================== Evento Actualizar ==============================
+    private void BtnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnActualizarActionPerformed
+        
+        String cajaNombre,cajaReferencia;
+        Double cajaTemperatura, cajaValorBase;
+        Long cajaCodProducto;
+        
+        // Instanciamos los clases DAO y nuestro modelo Producto
+        DaoProducto objDaoProducto;
+        Producto objProducto;
+        
+        // Capturamos la informacion de las cajas
+        cajaNombre = TextNombreAdmin.getText();
+        cajaReferencia = TextRefAdmin.getText();
+        cajaTemperatura = Double.parseDouble(TextTempAdmin.getText());
+        cajaValorBase = Double.parseDouble(TextValorlBaseAdmin.getText());
+        cajaCodProducto = Long.parseLong(TextCodigoAdmin.getText());
+        
+        if (cajaNombre.isEmpty() || cajaReferencia.isEmpty() || cajaTemperatura == 0 || cajaValorBase == 0) {
+            JOptionPane.showMessageDialog(PanelAdministrar, "Todos los valores son obligatorios");
+        }else{
+            // Creacion de objetos
+            objDaoProducto = new DaoProducto();
+            objProducto = new Producto();
+            
+            // Pasamos los atributos a Producto
+            objProducto.setNombre(cajaNombre);
+            objProducto.setId(cajaReferencia);
+            objProducto.setTemperatura(cajaTemperatura);
+            objProducto.setValorBase(cajaValorBase);
+            objProducto.setCodProducto(cajaCodProducto);
+            
+            if (objDaoProducto.actualizar(objProducto)) { // Recordemos que agregar retorna un booleano si es TRUE se agrego correctamente
+                JOptionPane.showMessageDialog(PanelAdministrar, "Registro Actualizado Correctamente");
+                limpiarCajas();
+                limpiarTabla();
+                cargarDatosTabla();
+            } else {
+                JOptionPane.showMessageDialog(PanelAdministrar, "Error: El registro no pudo ser Actualizado");
+                limpiarCajas();
+            }
+                   
+        }
+
+    }//GEN-LAST:event_BtnActualizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

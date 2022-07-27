@@ -17,4 +17,6 @@ public interface Operaciones<T> {
     
     public T buscar(long llavePK);
     
+    public boolean actualizar (T objeto);
+    
 }
