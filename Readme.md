@@ -209,7 +209,7 @@ public abstract class Conexion {
 
 ## Creacion de Interfaz Operaciones
 
-Esta interfaz contiene los metodos para implementar el CRUD agregar, consultar, borrar y buscar asi:
+Esta interfaz contiene los metodos para implementar el CRUD agregar, consultar, borrar y actualizar asi:
 
 ```java
 package interfaces;
