@@ -1,12 +1,53 @@
 
 package Formularios;
 
+import dao.DaoProducto;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelos.Producto;
 
 public class AdministrarProductos extends javax.swing.JInternalFrame {
 
-   
+    private final String columns[] = {"Codigo", "Nombre" , "Referencia" , "Temperatura", "Valor Base"};
+    private final DefaultTableModel miTablita = new DefaultTableModel(columns,0);
+    
+    // ==================== Constructor ========================================
     public AdministrarProductos() {
         initComponents();
+        cargarDatosTabla();
+    }
+    
+    // ============= Metodo para Limpioar cajas ================================
+    private void limpiarCajas(){
+        TextCodigoAdmin.setText("");
+        TextNombreAdmin.setText("");
+        TextRefAdmin.setText("");
+        TextTempAdmin.setText("");
+        TextValorlBaseAdmin.setText("");
+    }
+    
+    // ============= Metodo para cargar Registros en Tabla  ====================
+    private void cargarDatosTabla(){
+        // definimos variables
+        List<Producto> arregloProductos;
+        DaoProducto objDaoProductos;
+        
+        // Creamoslos objetos
+        objDaoProductos = new DaoProducto();
+        // llamamos al metodo consultar
+        arregloProductos = objDaoProductos.consultar();
+        
+        arregloProductos.forEach(producto -> {
+           Object[] fila = new Object[5];
+           fila[0] = producto.getCodProducto();
+           fila[1] = producto.getNombre();
+           fila[2] = producto.getId();
+           fila[3] = producto.getTemperatura();
+           fila[4] = producto.getValorBase();
+           miTablita.addRow(fila);        
+        });
+        tablaProductosAdmin.setModel(miTablita);
     }
 
     
@@ -32,7 +73,7 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
         TextNombreAdmin = new javax.swing.JTextField();
         BtnActualizar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tablaProductosAdmin = new javax.swing.JTable();
         BtnEliminar = new javax.swing.JButton();
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
@@ -76,7 +117,7 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
 
         BtnActualizar.setText("ACTUALIZAR");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tablaProductosAdmin.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -87,9 +128,19 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        tablaProductosAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaProductosAdminMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tablaProductosAdmin);
 
         BtnEliminar.setText("ELIMINAR");
+        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelAdministrarLayout = new javax.swing.GroupLayout(PanelAdministrar);
         PanelAdministrar.setLayout(PanelAdministrarLayout);
@@ -168,6 +219,74 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+   
+    // ============= Evento Click en una fila de la tabla  =====================
+    
+    private void tablaProductosAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosAdminMouseClicked
+        
+        // Obtengo el indice de la fila seleccionada por el Mouse
+        Integer filaSeleccionada = tablaProductosAdmin.getSelectedRow();
+        Long codProducto;
+        String nombreProducto,referenciaProducto;
+        Double tempProducto,valorBaseProducto;
+        
+        // Obtengo los valores con getValueAt Y LO seteo a Text field correspondiente
+        codProducto = Long.parseLong(miTablita.getValueAt(filaSeleccionada, 0).toString());
+        TextCodigoAdmin.setText(codProducto.toString());
+        
+        nombreProducto = miTablita.getValueAt(filaSeleccionada,1).toString();
+        TextNombreAdmin.setText(nombreProducto);
+        
+        referenciaProducto = miTablita.getValueAt(filaSeleccionada,2).toString();
+        TextRefAdmin.setText(referenciaProducto);
+        
+        tempProducto = Double.parseDouble(miTablita.getValueAt(filaSeleccionada, 3).toString());
+        TextTempAdmin.setText(tempProducto.toString());
+        
+        valorBaseProducto = Double.parseDouble(miTablita.getValueAt(filaSeleccionada, 4).toString());
+        TextValorlBaseAdmin.setText(valorBaseProducto.toString());
+        
+        
+    }//GEN-LAST:event_tablaProductosAdminMouseClicked
+    
+    private void limpiarTabla(){
+        for (int i = 0; i < tablaProductosAdmin.getRowCount(); i++) {
+            miTablita.removeRow(i);
+            i-=1;
+        }
+    }
+    
+    // ======================== EVvento Eliminar ===============================
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
+        // Definimos las variables
+        Long codProducto;
+        DaoProducto objDaoProducto;
+        Producto objProducto;
+        
+        // Capturamos valores de las cajas
+        codProducto = Long.parseLong(TextCodigoAdmin.getText());
+        
+        // Creacion de objetos
+        objDaoProducto = new DaoProducto();
+        objProducto = new Producto();
+        
+        objProducto.setCodProducto(codProducto);
+        
+        // LLamos el DAO Elimanr
+        if (objDaoProducto.borrar(objProducto)) {
+            JOptionPane.showMessageDialog(PanelAdministrar, "Registro Borrado Correctamente");
+            limpiarTabla();
+            cargarDatosTabla();
+            limpiarCajas();
+            
+        } else {
+            JOptionPane.showMessageDialog(PanelAdministrar, "Ocurrio un error");
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_BtnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -190,6 +309,6 @@ public class AdministrarProductos extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tablaProductosAdmin;
     // End of variables declaration//GEN-END:variables
 }

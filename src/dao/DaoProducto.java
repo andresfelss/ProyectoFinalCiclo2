@@ -85,7 +85,17 @@ public class DaoProducto extends Conexion implements Operaciones<Producto> {
 
     @Override
     public boolean borrar(Producto objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        try {
+            sql ="DELETE FROM productos WHERE codproducto=?";
+            consulta = objConexion.prepareStatement(sql);
+            consulta.setLong(1, objeto.getCodProducto());
+            int filas  = consulta.executeUpdate();
+            objConexion.close();
+            return filas > 0;
+        } catch (SQLException e) {
+            Logger.getLogger(DaoProducto.class.getName()).log(Level.SEVERE, null, e);
+            return false;
+        }
     }
 
     @Override
